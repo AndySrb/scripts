@@ -1,4 +1,5 @@
 from googletrans import *
+from srtools import cyrillic_to_latin, latin_to_cyrillic
 import glob
 import os
 
@@ -24,7 +25,8 @@ for files in filesList:
         if title == "":
             break
         translated = translator.translate(title ,dest='sr')
-        finalResult += translated.text
+        toLatin = cyrillic_to_latin(translated.text)
+        finalResult += toLatin
     finalResult = finalResult.replace(': ', ':')
     finalResult = finalResult.replace('->', '-->')
     a.close()
